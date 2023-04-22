@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class prices{
+public class election1{
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -38,7 +38,8 @@ public class prices{
            
        }
          if (votes[i] < lowestVotes) {
-         
+            
+            lowestVotes = votes[i];
             loser = candidates[i];
            
             }
@@ -54,4 +55,4 @@ public class prices{
             System.out.println("The candidate with the lowest number of votes is " + loser);
         
         }
-}
+}       
