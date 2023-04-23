@@ -1,0 +1,45 @@
+import java.util.*; // Importing the java.util package
+
+public class Election1 { // Declaring a public class named Election1
+
+    public static void main(String[] args) { // Declaring the main method of the program
+        
+        Scanner scanner = new Scanner(System.in); // Creating a new instance of Scanner to read user input
+        
+        String[] candidates = new String[5]; // Declaring a String array to store candidate names
+        int[] votes = new int[5]; // Declaring an integer array to store votes for each candidate
+        int totalVotes = 0; // Initializing a variable to store the total number of votes
+        int highestVotes = 0; // Initializing a variable to store the highest number of votes
+        int lowestVotes = Integer.MAX_VALUE; // Initializing a variable to store the lowest number of votes (set to the maximum value of an integer)
+        String loser = ""; // Initializing a variable to store the name of the candidate with the lowest number of votes
+        String winner = ""; // Initializing a variable to store the name of the candidate with the highest number of votes
+        
+        // Get candidate names and votes from user input
+        for (int i = 0; i < 5; i++) { // Looping through each of the 5 candidates
+            System.out.print("Enter the last name of candidate " + (i+1) + ": "); // Prompting the user to enter the name of the current candidate
+            candidates[i] = scanner.next(); // Reading the name of the current candidate from user input and storing it in the candidates array
+            System.out.print("Enter the number of votes received by " + candidates[i] + ": "); // Prompting the user to enter the number of votes received by the current candidate
+            votes[i] = scanner.nextInt(); // Reading the number of votes received by the current candidate from user input and storing it in the votes array
+            totalVotes += votes[i]; // Adding the number of votes received by the current candidate to the totalVotes variable
+        }        
+        
+        // Determine the winner and loser
+        for (int i = 0; i < 5; i++) { // Looping through each of the 5 candidates again
+            if (votes[i] > highestVotes) { // Checking if the current candidate has received more votes than the current highest number of votes
+                highestVotes = votes[i]; // Updating the highestVotes variable to the current candidate's number of votes
+                winner = candidates[i]; // Updating the winner variable to the current candidate's name
+            }
+            if (votes[i] < lowestVotes) { // Checking if the current candidate has received fewer votes than the current lowest number of votes
+                lowestVotes = votes[i]; // Updating the lowestVotes variable to the current candidate's number of votes
+                loser = candidates[i]; // Updating the loser variable to the current candidate's name
+            }
+        }
+        
+        // Output results
+        printElectionResults(candidates, votes, totalVotes, winner, loser); // Calling the printElectionResults method and passing in the candidates, votes, totalVotes, winner, and loser variables as arguments
+    }
+    
+    public static void printElectionResults(String[] candidates, int[] votes, int totalVotes, String winner, String loser) { // Declaring the printElectionResults method which takes in the candidates, votes, totalVotes, winner, and loser variables as arguments
+        System.out.println("\nElection Results:\n"); // Printing a header for the election results
+        
+        System.out.printf("%-20s%-20s%-20s\n","CANDID
