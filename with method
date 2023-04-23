@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class Election1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        String[] candidates = new String[5];
+        int[] votes = new int[5];
+        int totalVotes = 0;
+        int highestVotes = 0;
+        int lowestVotes = Integer.MAX_VALUE;
+        String loser = "";
+        String winner = "";
+        
+        // Get candidate names and votes from user input
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Enter the last name of candidate " + (i+1) + ": ");
+            candidates[i] = scanner.next();
+            System.out.print("Enter the number of votes received by " + candidates[i] + ": ");
+            votes[i] = scanner.nextInt();
+            totalVotes += votes[i];
+        }        
+        
+        // Determine the winner and loser
+        for (int i = 0; i < 5; i++) {
+            if (votes[i] > highestVotes) {
+                highestVotes = votes[i];
+                winner = candidates[i];
+            }
+            if (votes[i] < lowestVotes) {
+                lowestVotes = votes[i];
+                loser = candidates[i];
+            }
+        }
+        
+        // Output results
+        printElectionResults(candidates, votes, totalVotes, winner, loser);
+    }
+    
+    public static void printElectionResults(String[] candidates, int[] votes, int totalVotes, String winner, String loser) {
+        System.out.println("\nElection Results:\n");
+        System.out.printf("%-20s%-20s%-20s\n","CANDIDATES" , "VOTES RECEIVED", "% of total votes");
+        
+        for (int i = 0; i < 5; i++) {
+            double percentage = ((double)votes[i] / totalVotes) * 100;
+            System.out.printf("%-20s%-20s%-20s\n", candidates[i] , votes[i] , String.format("%.2f", percentage));
+        }
+        
+        int total = 0;
+        for (int vote : votes) {
+            total += vote;
+        }
+        
+        System.out.println("\nTotal votes: " + total);
+        System.out.println("The winner of the election is " + winner + "!");
+        System.out.println("The candidate with the lowest number of votes is " + loser);
+    }
+}
